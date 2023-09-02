@@ -74,9 +74,9 @@ abstract class AppTheme {
     ),
 
     // Elevated Button theme
-    elevatedButtonTheme: const ElevatedButtonThemeData(
+    elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        textStyle: MaterialStatePropertyAll<TextStyle>(
+        textStyle: const MaterialStatePropertyAll<TextStyle>(
           TextStyle(
             fontFamily: 'Roboto',
             fontSize: 14,
@@ -84,14 +84,20 @@ abstract class AppTheme {
             color: AppColors.white,
           ),
         ),
-        shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+        foregroundColor: const MaterialStatePropertyAll<Color>(Colors.white),
+        shape: const MaterialStatePropertyAll<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(9),
             ),
           ),
         ),
-        backgroundColor: MaterialStatePropertyAll<Color>(AppColors.green),
+        backgroundColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.disabled)) {
+            return AppColors.green.withOpacity(0.5);
+          }
+          return AppColors.green;
+        }),
       ),
     ),
 
