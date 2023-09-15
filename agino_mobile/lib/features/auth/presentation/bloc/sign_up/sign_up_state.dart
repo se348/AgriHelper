@@ -24,6 +24,26 @@ class UserCachingFailureState extends SignUpState {
   List<Object?> get props => [];
 }
 
+class NetworkFailureState extends SignUpState {
+  @override
+  List<Object?> get props => [];
+}
+
+class RegisteredSuccessfulState extends SignUpState{
+  @override
+  List<Object?> get props => [];
+}
+
+class SignUpFailedState extends SignUpState{
+  @override
+  List<Object?> get props => [];
+}
+
+class ServerFailureState extends SignUpState{
+  @override
+  List<Object?> get props => [];
+}
+
 class UserIdleState extends SignUpState {
   @override
   List<Object?> get props => [];

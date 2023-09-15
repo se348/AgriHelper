@@ -1,9 +1,12 @@
 ﻿using AgriHelper.Application.Contracts.Persistance;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AgriHelper.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private IDbContextTransaction _transaction;
+
         private IUserRepository _userRepository;
 
         private IFarmRepository _farmRepository;
@@ -17,6 +20,8 @@ namespace AgriHelper.Infrastructure.Repositories
         private ISensorResetDateRepository _sensorResetDateRepository;
 
         private INotificationRepository _notificationRepository;
+
+        private ISensorDateInformationRepository _sensorDateInformationRepository;
         private readonly AgriHelperDbContext _dbContext;
 
         public UnitOfWork(AgriHelperDbContext dbContext)
@@ -38,17 +43,40 @@ namespace AgriHelper.Infrastructure.Repositories
 
         public ISensorResetDateRepository SensorResetDateRepository => _sensorResetDateRepository ??= new SensorResetDateRepository(_dbContext);
 
+        public ISensorDateInformationRepository SensorDateInformationRepository => _sensorDateInformationRepository ??= new SensorDateInformationRepository(_dbContext);
         public INotificationRepository NotificationRepository => _notificationRepository ??= new NotificationRepository(_dbContext);
 
-        public void Dispose()
-        {
-            _dbContext.Dispose();
-            GC.SuppressFinalize(this);
-        }
-
+       
         public async Task<int> Save()
         {
             return await _dbContext.SaveChangesAsync();
         }
+
+        public async Task BeginTransaction()
+        {
+            _transaction = await _dbContext.Database.BeginTransactionAsync();
+        }
+
+        public async Task Commit()
+        {
+            await _transaction?.CommitAsync();
+        }
+
+        public async Task RollBack()
+        {
+            await _transaction?.RollbackAsync();
+        }
+
+        public async Task Dispose()
+        {
+            if (_transaction != null)
+            {
+                await _transaction.DisposeAsync();
+            }
+            await _dbContext.DisposeAsync();
+            GC.SuppressFinalize(this);
+
+        }
+
     }
 }

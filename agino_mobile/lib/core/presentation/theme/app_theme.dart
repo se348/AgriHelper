@@ -22,6 +22,11 @@ abstract class AppTheme {
       brightness: Brightness.light,
     ),
 
+    appBarTheme: AppBarTheme(color: AppColors.lightgray),
+    scaffoldBackgroundColor: AppColors.lightgray,
+    inputDecorationTheme: const InputDecorationTheme(
+        filled: true, fillColor: AppColors.white, border: InputBorder.none),
+
     // Text Theme
     textTheme: const TextTheme(
       // Headings
@@ -38,13 +43,19 @@ abstract class AppTheme {
         fontWeight: FontWeight.w500,
       ),
 
+      titleSmall: TextStyle(
+          color: AppColors.green,
+          fontWeight: FontWeight.w700,
+          fontSize: 16,
+          fontFamily: 'Roboto'),
+
       // // Body
-      // bodySmall: const TextStyle(
-      //   color: AppColors.darkBlue,
-      //   fontFamily: 'Poppins',
-      //   fontSize: 14,
-      //   fontWeight: FontWeight.w500,
-      // ),
+      bodySmall: TextStyle(
+        color: AppColors.darkGray,
+        fontFamily: 'Roboto',
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      ),
       bodyMedium: TextStyle(
         fontFamily: 'Roboto',
         color: AppColors.gray,
@@ -52,12 +63,12 @@ abstract class AppTheme {
         fontWeight: FontWeight.w400,
       ),
 
-      // displayLarge: const TextStyle(
-      //   fontWeight: FontWeight.w900,
-      //   fontSize: 14,
-      //   fontFamily: 'Poppins',
-      //   color: AppColors.darkBlue,
-      // ),
+      displayLarge: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 20,
+        fontFamily: 'Roboto',
+        color: AppColors.green,
+      ),
 
       // displayMedium: GoogleFonts.urbanist(
       //   fontSize: 24,
@@ -65,12 +76,12 @@ abstract class AppTheme {
       // ),
 
       // // Caption
-      // labelLarge: const TextStyle(
-      //   fontFamily: 'Poppins',
-      //   color: AppColors.darkGray,
-      //   fontSize: 14,
-      //   fontWeight: FontWeight.w900,
-      // ),
+      labelLarge: TextStyle(
+        fontFamily: 'Roboto',
+        color: AppColors.darkGray,
+        fontSize: 34,
+        fontWeight: FontWeight.w500,
+      ),
     ),
 
     // Elevated Button theme

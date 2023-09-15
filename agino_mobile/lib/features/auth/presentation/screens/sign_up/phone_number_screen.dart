@@ -1,12 +1,13 @@
-import 'package:agino_mobile/features/auth/domain/entities/user.dart';
-import 'package:agino_mobile/features/auth/presentation/bloc/sign_up/sign_up_bloc.dart';
-import 'package:agino_mobile/features/auth/presentation/widgets/custom_text_field.dart';
-import 'package:agino_mobile/features/auth/presentation/widgets/sign_up_layout.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../injection_container.dart';
+import '../../../domain/entities/user.dart';
+import '../../bloc/sign_up/sign_up_bloc.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/sign_up_layout.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   PhoneNumberScreen({super.key});
@@ -16,6 +17,9 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
+  
+   
+
   void countryPicker(BuildContext context) {
     showCountryPicker(
       context: context,
@@ -79,10 +83,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
             child: SignupLayout(
                 disabled: false,
                 onPressed: () {
-                  user?.phone =
-                      "${country?.phoneCode}-${phoneNumberController.text}";
-                  BlocProvider.of<SignUpBloc>(context)
-                      .add(CacheSignUpEvent(user: user!));
+                  if (formKey.currentState!.validate()) {
+                    user?.phone =
+                        "${country?.phoneCode}-${phoneNumberController.text}";
+                    BlocProvider.of<SignUpBloc>(context)
+                        .add(CacheSignUpEvent(user: user!));
+                    context.go("/onboarding/phone/email");
+                  }
                 },
                 title: "Sign up with your phone number",
                 content: Column(
@@ -90,9 +97,23 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   children: [
                     // CustomTextField(textEditingController: , hintText: hintText)
                     countryCodeSelector(context),
+                    const SizedBox(height: 20),
                     CustomTextField(
                         type: TextInputType.phone,
                         textEditingController: phoneNumberController,
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              country == null) {
+                            return "Please enter a valid phone number";
+                          }
+                          final numbersOnly = RegExp(r'^[0-9]+$');
+                          if (value.length < 9 ||
+                              !numbersOnly.hasMatch(value)) {
+                            return "Please enter a valid phone number";
+                          }
+                          return null;
+                        },
                         hintText: "Enter your phone number")
                   ],
                 )),

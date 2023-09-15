@@ -1,6 +1,7 @@
-import 'package:agino_mobile/core/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
+
+import '../../../../core/presentation/theme/app_colors.dart';
 
 class TermsScreen extends StatelessWidget {
   const TermsScreen({super.key});

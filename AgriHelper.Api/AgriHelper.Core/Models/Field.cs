@@ -11,5 +11,7 @@ namespace AgriHelper.Core.Models
         public string Polygon { get; set; }
 
         public ICollection<Sensor>? Sensors { get; set; }    
+
+        public ICollection<Notification>? Notifications { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace AgriHelper.Application.DTO.SensorDTO
         public double Longitude { get; set; }
 
         public double Latitude { get; set; }
+        public int BaseTemp { get; set; }
+
 
     }
 }

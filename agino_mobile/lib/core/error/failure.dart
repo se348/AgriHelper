@@ -33,3 +33,16 @@ class SignUpFailure extends Failure {
   @override
   List<Object?> get props => [message];
 }
+
+class LocationPermissionFailure extends Equatable implements Failure {
+  final String message;
+  const LocationPermissionFailure({this.message = 'Signup Exception'});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class UnauthorizedFailure extends Equatable implements Failure {
+  @override
+  List<Object?> get props => [];
+}

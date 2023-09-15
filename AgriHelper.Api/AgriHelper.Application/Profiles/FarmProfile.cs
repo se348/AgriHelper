@@ -25,7 +25,8 @@ namespace AgriHelper.Application.Profiles
                     .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                     .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.User.Phone));
 
-            CreateMap<Field, FarmFieldsResponseDTO>();
+            CreateMap<Field, FarmFieldsResponseDTO>()
+                .ForMember(dest => dest.Notifications, opt => opt.MapFrom(src => src.Notifications));
             CreateMap<Notification, FarmNotificationResponseDTO>();
 
 

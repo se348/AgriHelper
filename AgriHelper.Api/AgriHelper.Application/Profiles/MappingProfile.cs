@@ -16,6 +16,9 @@ namespace AgriHelper.Application.Profiles
             CreateMap<Farm, CreateFarmDTO>().ReverseMap();
             CreateMap<Field, CreateFieldDTO>().ReverseMap();
             CreateMap<Sensor, CreateSensorDTO>().ReverseMap();
+
+
+
         }
 
     }

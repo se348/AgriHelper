@@ -1,8 +1,8 @@
-﻿
-namespace AgriHelper.Application.Contracts.Persistance
+﻿namespace AgriHelper.Application.Contracts.Persistance
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
+
         public IUserRepository UserRepository { get; }
         public IFarmRepository FarmRepository { get; }
         public IFarmUserRepository FarmUserRepository{ get; }
@@ -10,8 +10,12 @@ namespace AgriHelper.Application.Contracts.Persistance
         public ISensorRepository SensorRepository{ get; }
 
         public ISensorResetDateRepository SensorResetDateRepository { get; }
+        public ISensorDateInformationRepository SensorDateInformationRepository { get; }
         INotificationRepository NotificationRepository { get; }
         Task<int> Save();
+        Task BeginTransaction();
+        Task Commit();
+        Task RollBack();
 
     }
 }

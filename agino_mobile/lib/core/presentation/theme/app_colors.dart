@@ -30,4 +30,5 @@ abstract class AppColors {
   static const green = Color.fromRGBO(32, 56, 47, 1);
   static const gray = Color.fromRGBO(95, 103, 108, 1);
   static const lightGreen = Color.fromRGBO(0, 214, 0, 1);
+  static const lightgray = Color.fromRGBO(245, 240, 240, 0.98);
 }

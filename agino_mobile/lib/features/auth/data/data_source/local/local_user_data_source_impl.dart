@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:agino_mobile/core/error/exeption.dart';
-import 'package:agino_mobile/features/auth/data/data_source/local/local_user_data_source.dart';
-import 'package:agino_mobile/features/auth/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/error/exeption.dart';
+import '../../models/user_model.dart';
+import 'local_user_data_source.dart';
 
 class LocalUserDataSourceImpl extends LocalUserDataSource {
   final SharedPreferences sharedPreferences;
@@ -33,5 +34,10 @@ class LocalUserDataSourceImpl extends LocalUserDataSource {
     } catch (err) {
       throw const CacheException();
     }
+  }
+
+  @override
+  Future<bool> logout() async {
+    return await sharedPreferences.remove(key);
   }
 }

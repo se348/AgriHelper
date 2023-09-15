@@ -18,6 +18,8 @@ namespace AgriHelper.Infrastructure
         public DbSet<SensorResetDate> SensorResetDates { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<SensorDateInformation> SensorDateInformations { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +38,7 @@ namespace AgriHelper.Infrastructure
             modelBuilder.Entity<Sensor>().ToTable(nameof(Sensor));
             modelBuilder.Entity<SensorResetDate>().ToTable(nameof(SensorResetDate));
             modelBuilder.Entity<User>().ToTable(nameof(User));
+            modelBuilder.Entity<SensorDateInformation>().ToTable(nameof(SensorDateInformation));    
         }
     }
 }

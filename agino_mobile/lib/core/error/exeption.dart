@@ -31,3 +31,24 @@ class SignUpException extends Equatable implements Exception {
   @override
   List<Object?> get props => [message];
 }
+
+class LoginException extends Equatable implements Exception {
+  final String message;
+  const LoginException({this.message = 'Login Exception'});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class LocationPermissionException extends Equatable implements Exception {
+  final String message;
+  const LocationPermissionException({this.message = 'Signup Exception'});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class UnauthorizedException extends Equatable implements Exception {
+  @override
+  List<Object?> get props => [];
+}

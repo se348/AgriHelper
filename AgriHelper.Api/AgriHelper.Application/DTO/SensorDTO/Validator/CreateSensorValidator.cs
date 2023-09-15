@@ -39,6 +39,11 @@ namespace AgriHelper.Application.DTO.SensorDTO.Validator
                 })
                 .WithMessage("Field does not exist");
 
+            RuleFor(field => field.BaseTemp)
+              .NotEmpty()
+              .LessThanOrEqualTo(30)
+              .GreaterThanOrEqualTo(10);
+
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using AgriHelper.Application.Contracts.Common;
-using AgriHelper.Application.Contracts.Persistance;
+﻿using AgriHelper.Application.Contracts.Persistance;
 using AgriHelper.Application.DTO.FarmDTO;
-using AgriHelper.Application.DTO.FarmDTO.Validator;
-using AgriHelper.Application.Features.Farm.Request.Commands;
 using AgriHelper.Application.Features.Farm.Request.Queries;
 using AgriHelper.Application.Responses;
-using AgriHelper.Core.Models;
 using AutoMapper;
 using MediatR;
 using System;
@@ -16,33 +12,20 @@ using System.Threading.Tasks;
 
 namespace AgriHelper.Application.Features.Farm.Handlers
 {
-    public class GetFarmQueryHandler : IRequestHandler<GetFarmQueries, BaseCommandResponse<List<FarmResponseDTO>>>
+    public class GetFarmQueryHandler : IRequestHandler<GetFarmQuery, BaseCommandResponse<FarmResponseDTO>>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
-        private readonly IDateTimeProvider _dateTimeProvider;
-
-        public GetFarmQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, IDateTimeProvider dateTimeProvider)
+        private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
+        public GetFarmQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _dateTimeProvider = dateTimeProvider;
+            _mapper = mapper;
         }
-        public async Task<BaseCommandResponse<List<FarmResponseDTO>>> Handle(GetFarmQueries request, CancellationToken cancellationToken)
+
+        public async Task<BaseCommandResponse<FarmResponseDTO>> Handle(GetFarmQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-
-
-                var farms = await _unitOfWork.FarmRepository.GetFarmWithUserId(request.GetFarmDTO.UserId);
-                return BaseCommandResponse<List<FarmResponseDTO>>.SuccessHandler(_mapper.Map<List<FarmResponseDTO>>(farms));
-
-            }
-            catch (Exception ex)
-            {
-                return BaseCommandResponse<List<FarmResponseDTO>>.FailureHandler(ex);
-            }
-
+            var farm = await _unitOfWork.FarmRepository.GetFarmWithRelations(request.FieldId);
+            return BaseCommandResponse<FarmResponseDTO>.SuccessHandler(_mapper.Map<FarmResponseDTO>(farm));
         }
     }
 }

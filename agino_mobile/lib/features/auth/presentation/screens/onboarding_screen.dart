@@ -1,6 +1,7 @@
-import 'package:agino_mobile/core/presentation/theme/app_colors.dart';
+import '../../../../core/presentation/theme/app_colors.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -53,7 +54,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go("/onboarding/phone");
+              },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: const Padding(
@@ -72,9 +75,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               const Text("Already have an account?"),
               TextButton(
-                  onPressed: () {},
-                  child: const Text(
+                  onPressed: () {
+                    context.go("/onboarding/login");
+                  },
+                  child: Text(
                     "Log in",
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ))
             ],
           )

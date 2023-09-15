@@ -7,6 +7,7 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="File.TypeChecker" Version="4.0.0" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
@@ -14,10 +15,8 @@
 	</ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Features\Field\Request\Queries\" />
+    <Folder Include="Features\SensorDateInformation\Request\Queries\" />
     <Folder Include="Features\Sensor\Request\Queries\" />
-    <Folder Include="Features\User\Request\Queries\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgriHelper.Core\AgriHelper.Core.csproj" />

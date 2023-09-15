@@ -12,8 +12,6 @@ namespace AgriHelper.Core.Models
 
         public ICollection<FarmUser>? FarmUsers { get; set; }
 
-        public ICollection<Notification>? Notifications { get; set; }
-
         public ICollection<Field> Fields { get; set; }
 
     }

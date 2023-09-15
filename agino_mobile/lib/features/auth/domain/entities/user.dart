@@ -8,9 +8,10 @@ class User extends Equatable {
   String? phone;
   String? password;
   int? userId;
+  String? token;
 
-  User({this.name, this.email, this.phone, this.password, this.userId});
+  User({this.name, this.email, this.phone, this.password, this.userId, this.token});
 
   @override
-  List<Object?> get props => [name, email, phone, password, userId];
+  List<Object?> get props => [name, email, phone, password, userId, token];
 }

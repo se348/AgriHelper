@@ -7,6 +7,6 @@ namespace AgriHelper.Application.DTO.UserDTO
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public string AuthId { get; set; }
+        public string Password { get; set; }
     }
 }

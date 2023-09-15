@@ -11,9 +11,15 @@ builder.Services.AddApplicationServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").SetIsOriginAllowedToAllowWildcardSubdomains()
+              .AllowAnyHeader()
+              .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+              .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+}));
 var app = builder.Build();
-
+app.UseCors("corsapp");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -26,5 +32,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

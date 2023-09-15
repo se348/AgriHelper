@@ -1,5 +1,6 @@
-import 'package:agino_mobile/core/error/failure.dart';
-import 'package:agino_mobile/features/auth/domain/entities/user.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/login_entity.dart';
+import '../entities/user.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {
@@ -7,4 +8,8 @@ abstract class UserRepository {
   Future<Either<Failure, int>> cacheUser(User user);
 
   Future<Either<Failure, User>> signUp(User user);
+  Future<Either<Failure, User>> login(LoginEntity user);
+
+  Future<bool> logout();
+
 }

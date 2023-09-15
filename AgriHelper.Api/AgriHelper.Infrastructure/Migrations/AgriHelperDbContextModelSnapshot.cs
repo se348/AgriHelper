@@ -116,7 +116,7 @@ namespace AgriHelper.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationId"), 1L, 1);
 
-                    b.Property<int>("FarmId")
+                    b.Property<int>("FieldId")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
@@ -129,13 +129,16 @@ namespace AgriHelper.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NotificationId");
 
-                    b.HasIndex("FarmId");
+                    b.HasIndex("FieldId");
 
                     b.ToTable("Notification", (string)null);
                 });
@@ -148,7 +151,13 @@ namespace AgriHelper.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SensorId"), 1L, 1);
 
+                    b.Property<int>("BaseTemp")
+                        .HasColumnType("int");
+
                     b.Property<int>("BatteryStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CalculatedGdd")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CuttingDatCalculated")
@@ -161,6 +170,9 @@ namespace AgriHelper.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("LastForecastDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastResetDate")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("Latitude")
@@ -184,6 +196,36 @@ namespace AgriHelper.Infrastructure.Migrations
                     b.HasIndex("FieldId");
 
                     b.ToTable("Sensor", (string)null);
+                });
+
+            modelBuilder.Entity("AgriHelper.Core.Models.SensorDateInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("AvgTemp")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("GddAddition")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PrecipitationInMMs")
+                        .HasColumnType("float");
+
+                    b.Property<int>("SensorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SensorId");
+
+                    b.ToTable("SensorDateInformation", (string)null);
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.SensorResetDate", b =>
@@ -219,10 +261,6 @@ namespace AgriHelper.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<string>("AuthId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -273,13 +311,13 @@ namespace AgriHelper.Infrastructure.Migrations
 
             modelBuilder.Entity("AgriHelper.Core.Models.Notification", b =>
                 {
-                    b.HasOne("AgriHelper.Core.Models.Farm", "Farm")
+                    b.HasOne("AgriHelper.Core.Models.Field", "Field")
                         .WithMany("Notifications")
-                        .HasForeignKey("FarmId")
+                        .HasForeignKey("FieldId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Farm");
+                    b.Navigation("Field");
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.Sensor", b =>
@@ -291,6 +329,17 @@ namespace AgriHelper.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Field");
+                });
+
+            modelBuilder.Entity("AgriHelper.Core.Models.SensorDateInformation", b =>
+                {
+                    b.HasOne("AgriHelper.Core.Models.Sensor", "Sensor")
+                        .WithMany("SensorDateInformation")
+                        .HasForeignKey("SensorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sensor");
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.SensorResetDate", b =>
@@ -317,18 +366,20 @@ namespace AgriHelper.Infrastructure.Migrations
                     b.Navigation("FarmUsers");
 
                     b.Navigation("Fields");
-
-                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.Field", b =>
                 {
+                    b.Navigation("Notifications");
+
                     b.Navigation("Sensors");
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.Sensor", b =>
                 {
                     b.Navigation("ResetDates");
+
+                    b.Navigation("SensorDateInformation");
                 });
 
             modelBuilder.Entity("AgriHelper.Core.Models.User", b =>

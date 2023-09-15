@@ -5,5 +5,6 @@ namespace AgriHelper.Application.Contracts.Persistance
     public interface IFarmRepository: IGenericRepository<Farm>
     {
         public Task<List<Farm>> GetFarmWithUserId(int userID);
+        public Task<Farm> GetFarmWithRelations(int farmId);
     }
 }

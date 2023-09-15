@@ -25,6 +25,8 @@ namespace AgriHelper.Application.DTO.FarmDTO
         public string Message { get; set; }
         public int SendBy { get; set; }
         public int Status { get; set; }
+        public int FieldId { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 
     public class FarmFieldsResponseDTO
@@ -32,6 +34,8 @@ namespace AgriHelper.Application.DTO.FarmDTO
         public int FieldId { get; set; }
         public int Altitude { get; set; }
         public string Polygon { get; set; }
+
+        public List<FarmNotificationResponseDTO> Notifications { get; set; }
 
     }
     public class FarmResponseDTO
@@ -43,8 +47,6 @@ namespace AgriHelper.Application.DTO.FarmDTO
         public string Country { get; set; }
 
         public ICollection<FarmUserResponseDTO>? Users { get; set; }
-
-        public ICollection<FarmNotificationResponseDTO>? Notifications { get; set; }
 
         public ICollection<FarmFieldsResponseDTO> Fields { get; set; }
     }

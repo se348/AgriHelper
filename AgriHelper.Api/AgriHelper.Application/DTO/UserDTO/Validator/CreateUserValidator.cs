@@ -24,6 +24,10 @@ namespace AgriHelper.Application.DTO.UserDTO.Validator
                 //.Matches(@"^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$")
                 .WithMessage("Invalid phone number Format");
 
+            RuleFor(user => user.Password)
+               .NotEmpty()
+               .WithMessage("Password Is Required");
+
             RuleFor(user => user.Email)
                 .MustAsync(async (email, cancellation) =>
                 {

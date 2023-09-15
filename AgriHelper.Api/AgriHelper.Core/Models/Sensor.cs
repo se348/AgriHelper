@@ -20,12 +20,18 @@ namespace AgriHelper.Core.Models
 
         public DateTime? LastForecastDate { get; set; }
 
+        public DateTime? LastResetDate { get; set; }
+
         public double Longitude { get; set; }
 
         public double Latitude { get; set; }
 
+        public int BaseTemp { get; set; }
+
         public int State { get; set; }
+        public int CalculatedGdd { get; set; } = 0;
 
         public ICollection<SensorResetDate>? ResetDates { get; set; }
+        public ICollection<SensorDateInformation>? SensorDateInformation { get; set; }
     }
 }
