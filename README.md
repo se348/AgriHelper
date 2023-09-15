@@ -96,17 +96,17 @@ Contributions to Agino are encouraged and welcome! If you would like to contribu
 If you have any questions, suggestions, or feedback, please feel free to reach out to us at semir2578@gmail.com.
 
 <div>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/5c76c153-ac42-4c3e-9c3d-dbb2312416f7" width=250>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/772e6b48-53f1-4f2d-9a0c-01967dd161c3" width=250>  
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/5c76c153-ac42-4c3e-9c3d-dbb2312416f7" style="padding:15px" width=250>
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/772e6b48-53f1-4f2d-9a0c-01967dd161c3" style="padding:15px" width=250>  
 </div>
 
 <div>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/2fda469f-6f81-4bff-bba2-229a248461c3" width=250>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/bb7179cd-b190-4e4d-a4ae-6caa437ccb97" width=250>
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/2fda469f-6f81-4bff-bba2-229a248461c3" style="padding:15px" width=250>
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/bb7179cd-b190-4e4d-a4ae-6caa437ccb97" style="padding:15px" width=250>
 </div>
 
 <div>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/56d48387-435f-46ba-bac8-e310196f3d0d" width=250>
-  <img src="https://github.com/se348/AgriHelper/assets/66954610/141e7c48-424b-48fd-b705-6651c1b53c37" width=250>
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/56d48387-435f-46ba-bac8-e310196f3d0d" style="padding:15px" width=250>
+  <img src="https://github.com/se348/AgriHelper/assets/66954610/141e7c48-424b-48fd-b705-6651c1b53c37" style="padding:15px" width=250>
 </div>
 Happy farming with Agino! 🌱🚜
